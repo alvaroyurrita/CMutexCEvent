@@ -1,0 +1,45 @@
+Digital_Input Test1;
+Digital_Input Test2;
+
+CMutex myMutex;
+Integer globalIndex;
+Long_Integer StartingHSecond;
+
+Function EnterMutex(integer index) {
+	integer ticks;
+	myMutex.WaitForMutex();
+	print("[%ld] - Entered Mutex with index %ld\r\n", GetHSeconds() - StartingHSecond, index);
+	Delay(200);
+	print("[%ld] - Finished processing index %ld\r\n", GetHSeconds() - StartingHSecond, index);
+	myMutex.ReleaseMutex();
+}
+
+Push Test1 {
+	integer ticks;
+	globalIndex = globalIndex + 1;
+	print("[%ld] - Calling Mutex Function with Index %ld\r\n", GetHSeconds() - StartingHSecond, globalIndex);
+	EnterMutex(globalIndex);
+}
+
+Function EnterMutex2(integer index) {
+	integer ticks;
+	myMutex.WaitForMutex();
+	print("[%ld] - Entered Mutex2 with index %ld\r\n", GetHSeconds() - StartingHSecond, index);
+	Delay(200);
+	print("[%ld] - Finished processing2 index %ld\r\n", GetHSeconds() - StartingHSecond, index);
+	myMutex.ReleaseMutex();
+}
+
+Push Test2 {
+	integer ticks;
+	globalIndex = globalIndex + 1;
+	print("[%ld] - Calling Mutex2 Function with Index %ld\r\n", GetHSeconds() - StartingHSecond, globalIndex);
+	EnterMutex2(globalIndex);
+}
+
+Function Main() {
+	WaitForInitializationComplete();
+	globalIndex = 0;
+	StartingHSecond = GetHSeconds();
+}
+

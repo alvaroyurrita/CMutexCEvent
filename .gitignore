@@ -1,0 +1,48 @@
+SPlsWork/
+
+# SIMPL+ compiled files
+*.sig
+*.h
+*.hash
+*.sm2
+*.smft
+*.ASVS
+
+# SIMPL Windows files
+*.sig
+*.ced
+*.vtz
+
+# Crestron compiled files
+*.cpz
+*.lpz
+*.clz
+
+# Debug files
+*.pdb
+*.map
+
+# Temporary files
+*.tmp
+*.temp
+~*
+
+# IDE files
+*.suo
+*.user
+*.sln.docstates
+*.vspscc
+*.vssscc
+
+
+# Log files
+*.log
+
+# Archive files
+*.zip
+*.rar
+*.7z
+
+# System files
+Thumbs.db
+.DS_Store
